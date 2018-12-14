@@ -1,0 +1,113 @@
+{% include 'templates/header.twig' %}
+
+    <!-- Page Content -->
+    <div class="container">
+    
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+        {% if user %}
+          <div class="col-md-12"  style="padding-bottom: 5px">
+            <form class="input_image">
+            
+              <input type="text" id="by_onlineUrl" name="input_url" placeholder="Collez ici l'url de l'image">
+              <small>ou</small>
+              <input type="file" id="by_localUrl" name="" onchange="readURL(this);">
+            
+            </form>
+            <div class="input_image" style="padding: 5px">
+              <button class="btn btn-primary" onclick="uploadImage()">Upload</button>
+            </div>
+          </div>
+
+          <style>
+          
+            .input_image {
+              display: inline;
+            }
+          
+          </style>
+          
+
+        {% endif %}
+        
+
+        <div id="meme_image" class="col-md-6" style="padding: 0px">
+          <div style="position: absolute; top: 5px; left: 5px; z-index: 1; width: 100%">
+            <p id="top_text" style="text-align: center; font-size: 40px; font-weight: bold"></p>
+          </div>
+
+          <div style="position: absolute; bottom: 0px; left: 5px; z-index: 1; width: 100%">
+            <p id="bottom_text" style="text-align: center; font-size: 40px; font-weight: bold"></p>
+          </div>
+
+          <div>
+            <img class="img-fluid" id="first_image" src="public/images/img1.jpg" alt="" style="width: 600px; height: 300px">
+          </div>
+        </div>
+
+        <div class="col-md-2"></div>
+
+        <div class="col-md-4">
+          
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Texte 1</label>
+              <input id="textTop" type="text" class="form-control" id="exampleInputEmail1" placeholder="Entrez ici votre texte" onkeyup="displayText(document.querySelector('#top_text'), this)">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Texte 2</label>
+              <input id="textBottom" type="text" class="form-control" id="exampleInputPassword1" placeholder="Entrez ici votre texte"  onkeyup="displayText(document.querySelector('#bottom_text'), this)">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Couleur : </label>
+              <input id="color" type="color" id="couleurTexte" name="color" onchange="changeColor()">
+            </div>
+          </form>
+          <button class="btn btn-primary" onclick="downloadMeme('meme_image')">Télécharger</button>
+          
+        </div>
+
+      </div>
+      
+      <!-- /.row -->
+
+      <!-- Related Projects Row -->
+      <h3 class="my-4">Choisissez une image</h3>
+
+    <div class="live__scroll">
+      <div class="row text-center">
+
+        <div class="col-md-3 col-sm-6 mb-4 live__scroll--box" style="width=500px; height=300px">
+            <img class="img-fluid" src="public/images/img1.jpg" alt="" style="width=500px; height=300px" onclick='changeImage("public/images/img1.jpg")'>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4 live__scroll--box" style="width=500px; height=300px">
+            <img class="img-fluid" src="public/images/img2.jpg" alt="" style="width=500px; height=300px" onclick='changeImage("public/images/img2.jpg")'>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4 live__scroll--box" style="width=500px; height=300px">
+            <img class="img-fluid" src="public/images/img3.jpg" alt="" style="width=500px; height=300px" onclick='changeImage("public/images/img3.jpg")'>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4 live__scroll--box" style="width=500px; height=300px">
+            <img class="img-fluid" src="public/images/img4.jpg" alt="" style="width=500px; height=300px" onclick='changeImage("public/images/img4.jpg")'>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4 live__scroll--box" style="width=500px; height=300px">
+            <img class="img-fluid" src="public/images/img5.jpg" alt="" style="width=500px; height=300px" onclick='changeImage("public/images/img5.jpg")'>
+        </div>
+
+        <div class="col-md-3 col-sm-6 mb-4 live__scroll--box" style="width=500px; height=300px">
+            <img class="img-fluid" src="public/images/img6.jpg" alt="" style="width=500px; height=300px" onclick='changeImage("public/images/img6.jpg")'>
+        </div>
+
+      </div>
+    </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    {% include 'templates/footer.twig' %}

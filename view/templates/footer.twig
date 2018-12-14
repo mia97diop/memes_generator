@@ -1,0 +1,91 @@
+<!-- Footer -->
+    <footer class="container-fluid py-5 bg-dark">
+      <div class="container">
+        <div class="text-center socials">
+            <a href="https://facebook.com" target="_blank"><i class="fa fa-facebook social_icon" style="font-size: 30px; padding: 5px"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fa fa-twitter" style="font-size: 30px; padding: 5px"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fa fa-linkedin" style="font-size: 30px; padding: 5px"></i></a>
+        </div>
+        <p class="m-0 text-center text-white">&copy; ACSDakar-Kéloumak 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="public/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="public/js/script.js"></script>
+    
+
+    <script>
+
+        function changeColor() {
+          document.querySelector('#top_text').style.color = document.querySelector('#color').value;
+          document.querySelector('#bottom_text').style.color = document.querySelector('#color').value;
+        }
+      
+        function displayText(destination, text) {
+          destination.innerText = text.value;
+        }
+
+        function downloadMeme(id) {
+          var fileName = "";
+          for(var i = 0 ; i < 15 ; i++) {
+            fileName += Math.round(Math.random() * 100);
+          }
+          html2canvas($('#' + id), 
+          {
+            onrendered: function (canvas) {
+              var a = document.createElement('a');
+              // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+              a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+              a.download = 'img' + fileName + '.jpg';
+              a.click();
+            }
+          });
+        }
+
+        function uploadImage(event) {
+          var onlineUrl = document.querySelector('#by_onlineUrl');
+          var localUrl = document.querySelector('#by_localUrl');
+
+          if(onlineUrl.value && localUrl.value) {
+            onlineUrl.style.borderColor = '#ff0000';
+            localUrl.style.borderColor = '#ff0000';
+            alert('Vous ne pouvez pas choisir 2 images à la fois');
+          }
+          else if(!onlineUrl.value && !localUrl.value) {
+            alert('Choisissez une image en ligne ou sur votre ordinateur\nVous pouvez aussi choisir parmi les images proposées ci-dessous');
+          }
+          else {
+            if(onlineUrl.value) {
+              document.querySelector('#first_image').src = onlineUrl.value;
+            }
+            if(localUrl.value) {
+              //document.querySelector('#first_image').src = localUrl.value;
+              $dir = dirname(localUrl.value);
+              alert('also');  
+            }
+          }
+        }
+
+
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#first_image')
+                    .attr('src', e.target.result)
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }   
+      </script>
+
+
+  </body>
+
+</html>

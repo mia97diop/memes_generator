@@ -1,0 +1,12 @@
+{
+    "name": "aliou-sow/meme_creator",
+    "authors": [
+        {
+            "name": "Aliou-Sow",
+            "email": "sowalils1992@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^1.0"
+    }
+}
